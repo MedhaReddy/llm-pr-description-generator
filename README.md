@@ -1,1 +1,5 @@
-# llm-pr-description-generator
+# LLM PR Description Generator
+
+## Features
+
+## Prerequisites
