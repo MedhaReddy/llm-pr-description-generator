@@ -47,4 +47,6 @@ jobs:
         DESCRIPTION: ${{ steps.generate.outputs.description }}
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
-        gh pr comment ${{ github.event.pull_request.number }} --body "## 🤖 AI Generated PR Description $DESCRIPTION"
+        gh pr comment ${{ github.event.pull_request.number }} --body "## 🤖 AI Generated PR Description 
+        
+        $DESCRIPTION"
