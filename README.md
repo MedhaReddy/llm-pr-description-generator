@@ -35,7 +35,7 @@ Post generated description as a PR comment
 
 **1. Clone the repo**
 ```bash
-git clone https://github.com/MedhaReddy/llm-pr-description-generator.git
+git clone https://github.com/medhaships/llm-pr-description-generator.git
 cd llm-pr-description-generator
 ```
 
@@ -52,10 +52,10 @@ Open a pull request. The workflow triggers automatically and posts a description
 
 ## What I Learned
 
-- LLM API calls are just HTTP POST requests — the complexity is in structuring the prompt, not the integration
-- GitHub Actions `$GITHUB_OUTPUT` requires a heredoc pattern for multi-line values like git diffs
-- Passing dynamic content through environment variables (instead of inline in YAML) avoids special character issues in shell and JavaScript contexts
-- `gh` CLI is simpler than `actions/github-script` for straightforward API calls — fewer moving parts
+- LLM API calls are just POST requests — the hard part is the prompt, not the integration
+- Multi-line values in `$GITHUB_OUTPUT` need heredoc syntax or they get truncated
+- Pass dynamic content via env vars, not inline YAML — special characters will break you
+- gh CLI beats `actions/github-script` for simple use cases — less ceremony
 
 ## Future Improvements
 
