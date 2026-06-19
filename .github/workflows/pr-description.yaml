@@ -2,21 +2,20 @@ name: Generate PR Description
 
 on: 
   pull_request:
-    types: [ opened ]
 
 jobs:
   generate-description:
     runs-on: ubuntu-latest
     permissions:
-        pull_requests: write
+        pull-requests: write
     steps:
     - name: Checkout Code
-      uses: actions\checkout@v4
+      uses: actions/checkout@v4
       with:
         fetch-depth: 0
 
     - name: Set Up Go
-      uses: actions\set-up-go@v5
+      uses: actions/setup-go@v5
       with:
         go-version: '1.21'
 
@@ -44,12 +43,8 @@ jobs:
         echo "EOF" >> $GITHUB_OUTPUT
       
     - name: Post PR Comment
-      uses: actions/github-script@v7
-      with:
-        script: |
-          github.rest.issues.createComment({
-            issue_number: context.issue.number,
-            owner: context.repo.owner,
-            repo: context.repo.repo,
-            body: `## 🤖 AI Generated PR Description\n\n${{ steps.generate.outputs.description }}`
-          })
+      env:
+        DESCRIPTION: ${{ steps.generate.outputs.description }}
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      run: |
+        gh pr comment ${{ github.event.pull_request.number }} --body "## 🤖 AI Generated PR Description $DESCRIPTION"
