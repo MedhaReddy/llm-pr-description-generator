@@ -2,7 +2,6 @@ name: Generate PR Description
 
 on: 
   pull_request:
-    types: [ opened ]
 
 jobs:
   generate-description:
