@@ -26,7 +26,14 @@ func main() {
     	MaxTokens: 1024,
 		Messages: []anthropic.MessageParam{
 			anthropic.NewUserMessage(anthropic.NewTextBlock(
-				fmt.Sprintf("You are a helpful assistant that writes clear, concise PR descriptions.\n\nHere is the git diff:\n\n%s\n\nWrite a short PR description with:\n- What changed\n- Why it matters\n\nKeep it under 5 bullet points.", diff),
+				fmt.Sprintf(`You are a helpful assistant that writes clear, concise PR descriptions.
+				Here is the git diff:
+				%s
+				Write a short PR description with:
+				- What changed
+				- Why it matters
+				Keep it under 5 bullet points.
+				Do not use markdown headers (no # symbols). Use only bullet points.`, diff),
 			)),
 		},
 	})
